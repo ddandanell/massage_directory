@@ -36,7 +36,7 @@ export default function FreelancersPage() {
     const [locations, setLocations] = useState<Location[]>([])
     const [treatments, setTreatments] = useState<Treatment[]>([])
     const [loading, setLoading] = useState(true)
-    const [filters, setFilters] = useState({ query: '', locationId: '', treatmentId: '' })
+    const [filters, setFilters] = useState<{ query: string; locationId: string; treatmentId: string }>({ query: '', locationId: '', treatmentId: '' })
 
     const fetchInitialData = async () => {
         try {
@@ -55,7 +55,7 @@ export default function FreelancersPage() {
         }
     }
 
-    const fetchFreelancers = useCallback(async (currentFilters: typeof filters) => {
+    const fetchFreelancers = useCallback(async (currentFilters: { query: string; locationId: string; treatmentId: string }) => {
         setLoading(true)
         try {
             const params = new URLSearchParams()
@@ -79,7 +79,7 @@ export default function FreelancersPage() {
         fetchInitialData()
     }, [])
 
-    const handleFilterChange = (newFilters: typeof filters) => {
+    const handleFilterChange = (newFilters: { query: string; locationId: string; treatmentId: string }) => {
         setFilters(newFilters)
         fetchFreelancers(newFilters)
     }
@@ -87,33 +87,33 @@ export default function FreelancersPage() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pb-20">
             {/* Header section */}
-            <div className="relative py-20 overflow-hidden">
+            <div className="relative py-12 md:py-20 overflow-hidden">
                 <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] rounded-full translate-y-20"></div>
                 <div className="max-w-7xl mx-auto px-4 relative">
-                    <h1 className="text-6xl font-black text-white mb-6 tracking-tight">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
                         Find Your <span className="text-emerald-400">Perfect</span> Therapist
                     </h1>
-                    <p className="text-xl text-slate-400 max-w-2xl leading-relaxed">
-                        Discover Bali's elite network of independent massage professionals.
+                    <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed">
+                        Discover Bali&apos;s elite network of independent massage professionals.
                         Filter by location, treatment type, or search for your favorite therapist.
                     </p>
                 </div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4">
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
                     {/* Sidebar Filters */}
                     <div className="lg:col-span-1">
-                        <div className="sticky top-24">
+                        <div className="lg:sticky lg:top-24">
                             <SearchFilters
                                 locations={locations}
                                 treatments={treatments}
                                 onFilterChange={handleFilterChange}
                             />
 
-                            <div className="mt-8 p-6 bg-emerald-900/10 border border-emerald-900/20 rounded-3xl">
-                                <h4 className="text-emerald-400 font-bold mb-2">Verified Professionals</h4>
-                                <p className="text-slate-400 text-sm">
+                            <div className="mt-6 md:mt-8 p-4 md:p-6 bg-emerald-900/10 border border-emerald-900/20 rounded-2xl md:rounded-3xl">
+                                <h4 className="text-emerald-400 font-bold mb-2 text-sm md:text-base">Verified Professionals</h4>
+                                <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
                                     All therapists in our directory are manually reviewed for quality and experience.
                                 </p>
                             </div>
@@ -138,18 +138,21 @@ export default function FreelancersPage() {
                             <div className="bg-slate-900/50 border border-slate-800 rounded-3xl px-8 py-20 text-center">
                                 <div className="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <svg className="w-10 h-10 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                     </svg>
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-2">No therapists found</h3>
-                                <p className="text-slate-400">
-                                    Try adjusting your search terms or filters to find what you're looking for.
+                                <p className="text-slate-400 mb-2 max-w-md mx-auto">
+                                    We couldn&apos;t find any therapists matching your search criteria.
+                                </p>
+                                <p className="text-slate-500 text-sm mb-6">
+                                    Try adjusting your filters or search terms to discover more therapists in our directory.
                                 </p>
                                 <button
                                     onClick={() => handleFilterChange({ query: '', locationId: '', treatmentId: '' })}
-                                    className="mt-6 text-emerald-400 font-bold hover:text-emerald-300 underline underline-offset-4"
+                                    className="inline-block px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl transition-all hover:scale-105"
                                 >
-                                    Clear all filters
+                                    Clear All Filters
                                 </button>
                             </div>
                         )}

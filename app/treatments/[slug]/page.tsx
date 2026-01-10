@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
+import Image from 'next/image'
+import { getPlaceholderImageUrl } from '@/lib/ai/generate-image'
 
 interface TreatmentPageProps {
     params: {
@@ -98,19 +100,34 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
             <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
                 <div className="max-w-5xl mx-auto px-4 py-12">
                     {/* Header */}
-                    <div className="mb-8">
+                    <div className="mb-6">
                         <Link href="/treatments" className="text-emerald-400 hover:text-emerald-300 mb-4 inline-block">
                             ← Back to All Treatments
                         </Link>
-                        <h1 className="text-5xl font-bold text-white mb-4">{treatment.name}</h1>
                         {treatment.aliases.length > 0 && (
-                            <p className="text-slate-400">
+                            <p className="text-slate-400 text-sm mb-2">
                                 Also known as: {treatment.aliases.join(', ')}
                             </p>
                         )}
-                        {treatment.origin && (
-                            <p className="text-emerald-400 mt-2">Origin: {treatment.origin}</p>
-                        )}
+                    </div>
+
+                    {/* Hero Image */}
+                    <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-8 border border-slate-800">
+                        <Image
+                            src={getPlaceholderImageUrl(treatment.name, 1200, 600)}
+                            alt={`${treatment.name} massage therapy`}
+                            fill
+                            className="object-cover"
+                            priority
+                            sizes="(max-width: 768px) 100vw, 100vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 p-8">
+                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">{treatment.name}</h1>
+                            {treatment.origin && (
+                                <p className="text-emerald-400 text-lg">Origin: {treatment.origin}</p>
+                            )}
+                        </div>
                     </div>
 
                     {/* Main Content */}
@@ -206,28 +223,49 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
                     </div>
 
                     {/* Available Providers */}
-                    {treatment.services.length > 0 && (
-                        <section className="mt-12">
-                            <h2 className="text-3xl font-bold text-white mb-6">Available Providers</h2>
+                    <section className="mt-12">
+                        <h2 className="text-3xl font-bold text-white mb-6">Available Providers</h2>
+                        {treatment.services.length > 0 ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {treatment.services.map(({ freelancerProfile, customPricing }) => (
                                     <Link
                                         key={freelancerProfile.id}
                                         href={`/freelancers/${freelancerProfile.slug}`}
-                                        className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-800 hover:border-emerald-500 transition-all"
+                                        className="group bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-800 hover:border-emerald-500 transition-all hover:scale-105"
                                     >
-                                        <h3 className="text-xl font-semibold text-white mb-2">{freelancerProfile.name}</h3>
-                                        <p className="text-slate-400 mb-3">{freelancerProfile.location.name}</p>
+                                        <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">{freelancerProfile.name}</h3>
+                                        <p className="text-slate-400 mb-3 text-sm">{freelancerProfile.location.name}</p>
                                         {customPricing && (
                                             <p className="text-emerald-400 font-semibold">
                                                 Rp {customPricing.toLocaleString()}
                                             </p>
                                         )}
+                                        <p className="text-slate-500 text-sm mt-3 group-hover:text-slate-400 transition-colors">
+                                            View Profile →
+                                        </p>
                                     </Link>
                                 ))}
                             </div>
-                        </section>
-                    )}
+                        ) : (
+                            <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-12 border border-slate-800 text-center">
+                                <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg className="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                </div>
+                                <p className="text-slate-300 text-lg mb-2">No providers available yet</p>
+                                <p className="text-slate-500 text-sm mb-6">
+                                    There are currently no therapists offering {treatment.name} in our directory.
+                                </p>
+                                <Link
+                                    href="/dashboard/profile"
+                                    className="inline-block px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl transition-all hover:scale-105"
+                                >
+                                    Become a Provider
+                                </Link>
+                            </div>
+                        )}
+                    </section>
                 </div>
             </div>
         </>

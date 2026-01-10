@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface FreelancerPageProps {
     params: {
@@ -78,31 +79,31 @@ export default async function FreelancerPage({ params }: FreelancerPageProps) {
             />
 
             <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-                <div className="max-w-5xl mx-auto px-4 py-12">
+                <div className="max-w-5xl mx-auto px-4 py-8 md:py-12">
                     {/* Header */}
-                    <div className="mb-8">
-                        <Link href={`/locations/${freelancer.location.slug}`} className="text-emerald-400 hover:text-emerald-300 mb-4 inline-block">
+                    <div className="mb-6 md:mb-8">
+                        <Link href={`/locations/${freelancer.location.slug}`} className="text-emerald-400 hover:text-emerald-300 mb-4 inline-block text-sm md:text-base">
                             ← Back to {freelancer.location.name}
                         </Link>
-                        <h1 className="text-5xl font-bold text-white mb-4">{freelancer.name}</h1>
-                        <p className="text-xl text-slate-400">
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4">{freelancer.name}</h1>
+                        <p className="text-lg md:text-xl text-slate-400">
                             {freelancer.location.name}, {freelancer.location.region}
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
                         {/* Main Content */}
-                        <div className="lg:col-span-2 space-y-8">
+                        <div className="lg:col-span-2 space-y-6 md:space-y-8">
                             {/* Bio */}
-                            <section className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-800">
-                                <h2 className="text-2xl font-semibold text-white mb-4">About</h2>
-                                <p className="text-slate-300 leading-relaxed whitespace-pre-line">{freelancer.bio}</p>
+                            <section className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-800">
+                                <h2 className="text-xl md:text-2xl font-semibold text-white mb-3 md:mb-4">About</h2>
+                                <p className="text-slate-300 leading-relaxed whitespace-pre-line text-sm md:text-base">{freelancer.bio}</p>
                             </section>
 
                             {/* Experience */}
-                            <section className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-800">
-                                <h2 className="text-2xl font-semibold text-white mb-4">Experience</h2>
-                                <p className="text-slate-300 leading-relaxed whitespace-pre-line">{freelancer.experience}</p>
+                            <section className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-800">
+                                <h2 className="text-xl md:text-2xl font-semibold text-white mb-3 md:mb-4">Experience</h2>
+                                <p className="text-slate-300 leading-relaxed whitespace-pre-line text-sm md:text-base">{freelancer.experience}</p>
                             </section>
 
                             {/* Services Offered */}
@@ -184,16 +185,19 @@ export default async function FreelancerPage({ params }: FreelancerPageProps) {
 
                             {/* Photos */}
                             {freelancer.photos.length > 0 && (
-                                <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-800">
-                                    <h3 className="text-xl font-semibold text-white mb-4">Gallery</h3>
+                                <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-slate-800">
+                                    <h3 className="text-lg md:text-xl font-semibold text-white mb-4">Gallery</h3>
                                     <div className="grid grid-cols-2 gap-3">
                                         {freelancer.photos.map((photo, index) => (
-                                            <img
-                                                key={index}
-                                                src={photo}
-                                                alt={`${freelancer.name} - Photo ${index + 1}`}
-                                                className="w-full h-32 object-cover rounded-lg"
-                                            />
+                                            <div key={index} className="relative aspect-square rounded-lg overflow-hidden">
+                                                <Image
+                                                    src={photo}
+                                                    alt={`${freelancer.name} - Photo ${index + 1}`}
+                                                    fill
+                                                    className="object-cover"
+                                                    sizes="(max-width: 768px) 50vw, 33vw"
+                                                />
+                                            </div>
                                         ))}
                                     </div>
                                 </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Service {
     id: string
@@ -25,18 +26,21 @@ export default function FreelancerCard({ freelancer }: { freelancer: Freelancer 
     return (
         <Link
             href={`/freelancers/${freelancer.slug}`}
-            className="group bg-slate-900/50 backdrop-blur-sm rounded-3xl border border-slate-800 overflow-hidden hover:border-emerald-500 transition-all hover:scale-[1.02] flex flex-col"
+            className="group bg-slate-900/50 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-slate-800 overflow-hidden hover:border-emerald-500 transition-all hover:scale-[1.02] flex flex-col"
+            aria-label={`View profile of ${freelancer.name}`}
         >
             <div className="relative h-48 bg-slate-800">
                 {freelancer.photos && freelancer.photos.length > 0 ? (
-                    <img
+                    <Image
                         src={freelancer.photos[0]}
-                        alt={freelancer.name}
-                        className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                        alt={`${freelancer.name} - Massage therapist in ${freelancer.location.name}`}
+                        fill
+                        className="object-cover transition-transform group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-slate-700">
-                        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                     </div>
@@ -48,12 +52,12 @@ export default function FreelancerCard({ freelancer }: { freelancer: Freelancer 
                 </div>
             </div>
 
-            <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+            <div className="p-4 md:p-6 flex flex-col flex-1">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                     {freelancer.name}
                 </h3>
 
-                <p className="text-slate-400 text-sm line-clamp-2 mb-4 flex-1">
+                <p className="text-slate-400 text-xs md:text-sm line-clamp-2 mb-4 flex-1 leading-relaxed">
                     {freelancer.bio}
                 </p>
 
@@ -74,9 +78,9 @@ export default function FreelancerCard({ freelancer }: { freelancer: Freelancer 
                         )}
                     </div>
 
-                    <div className="pt-4 border-t border-slate-800 flex justify-between items-center text-emerald-400 text-sm font-bold">
+                    <div className="pt-4 border-t border-slate-800 flex justify-between items-center text-emerald-400 text-xs md:text-sm font-bold">
                         <span>View Profile</span>
-                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                     </div>

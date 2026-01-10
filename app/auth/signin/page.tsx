@@ -71,7 +71,7 @@ export default function SignInPage() {
                         <div>
                             <div className="flex justify-between items-center mb-1">
                                 <label className="block text-sm font-medium text-slate-400">Password</label>
-                                <Link href="#" className="text-xs text-emerald-400 hover:text-emerald-300">Forgot password?</Link>
+                                <span className="text-xs text-slate-500">Contact admin for password reset</span>
                             </div>
                             <input
                                 type="password"
