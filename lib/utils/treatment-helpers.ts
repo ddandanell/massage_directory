@@ -12,10 +12,10 @@ interface TreatmentLike {
  * Used to conditionally display region-specific content
  */
 export function isBaliOrIndonesianTreatment(treatment: TreatmentLike): boolean {
-  const balinesesSlugs = ['balinese-massage', 'traditional-balinese-massage']
+  const balineseSlugs = ['balinese-massage', 'traditional-balinese-massage']
   
   // Check if slug matches known Balinese treatments
-  if (balinesesSlugs.includes(treatment.slug)) {
+  if (balineseSlugs.includes(treatment.slug)) {
     return true
   }
   
