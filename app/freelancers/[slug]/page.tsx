@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
+import { EXTERNAL_LINKS } from '@/lib/constants/external-links'
 
 interface FreelancerPageProps {
     params: {
@@ -98,6 +99,11 @@ export default async function FreelancerPage({ params }: FreelancerPageProps) {
                             <section className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-800">
                                 <h2 className="text-xl md:text-2xl font-semibold text-white mb-3 md:mb-4">About</h2>
                                 <p className="text-slate-300 leading-relaxed whitespace-pre-line text-sm md:text-base">{freelancer.bio}</p>
+                                {freelancer.location.slug === 'ubud' && (
+                                    <p className="text-slate-300 text-sm leading-relaxed mt-4 pt-4 border-t border-slate-700">
+                                        Looking for additional options? Discover more qualified therapists offering <a href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">professional home massage services in Ubud</a>.
+                                    </p>
+                                )}
                             </section>
 
                             {/* Experience */}

@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import { Providers } from "@/components/Providers";
 import Navbar from "@/components/Navbar";
+import { EXTERNAL_LINKS } from "@/lib/constants/external-links";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -141,9 +142,17 @@ export default function RootLayout({
 
               <div className="col-span-2 md:col-span-1">
                 <h4 className="font-semibold text-white mb-3 md:mb-4 text-sm md:text-base">About</h4>
-                <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
+                <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-3">
                   Connecting clients with verified massage therapists across Bali.
                 </p>
+                <h5 className="font-semibold text-white mb-2 text-xs md:text-sm">Partners</h5>
+                <ul className="space-y-2">
+                  <li>
+                    <a href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-emerald-400 text-xs md:text-sm transition-colors">
+                      Home Massage Ubud
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
 

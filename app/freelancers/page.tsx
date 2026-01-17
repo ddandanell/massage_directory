@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import FreelancerCard from '@/components/freelancers/FreelancerCard'
 import SearchFilters from '@/components/freelancers/SearchFilters'
+import { EXTERNAL_LINKS } from '@/lib/constants/external-links'
 
 interface Location {
     id: string
@@ -95,7 +96,7 @@ export default function FreelancersPage() {
                     </h1>
                     <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed">
                         Discover Bali&apos;s elite network of independent massage professionals.
-                        Filter by location, treatment type, or search for your favorite therapist.
+                        Filter by location, treatment type, or search for your favorite therapist. Prefer the convenience of treatments at your villa? Check out <a href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage options in Ubud</a>.
                     </p>
                 </div>
             </div>
@@ -115,6 +116,13 @@ export default function FreelancersPage() {
                                 <h4 className="text-emerald-400 font-bold mb-2 text-sm md:text-base">Verified Professionals</h4>
                                 <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
                                     All therapists in our directory are manually reviewed for quality and experience.
+                                </p>
+                            </div>
+
+                            <div className="mt-6 p-4 md:p-6 bg-teal-900/10 border border-teal-900/20 rounded-2xl md:rounded-3xl">
+                                <h4 className="text-teal-400 font-bold mb-2 text-sm md:text-base">Home Services Available</h4>
+                                <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
+                                    Prefer massage at your location? Our partners offer <a href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url} target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 underline decoration-teal-400/30 hover:decoration-teal-300 transition-colors">mobile massage services throughout Ubud</a>.
                                 </p>
                             </div>
                         </div>
