@@ -34,7 +34,7 @@ export default async function LocationsPage() {
                 <div className="mb-12">
                     <h1 className="text-5xl font-bold text-white mb-4">Massage Locations in Bali</h1>
                     <p className="text-xl text-slate-400">
-                        Find massage therapists in {locations.length} locations across Bali
+                        Find massage therapists in {locations.length} locations across Bali. Whether you prefer visiting a spa or the comfort of your accommodation, we help you discover the best massage experiences. For personalized <a href="https://homemassageubud.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services in Ubud</a>, check out our trusted partner.
                     </p>
                 </div>
 

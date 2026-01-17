@@ -38,7 +38,7 @@ export default async function HomePage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
-              Discover authentic massage experiences across Bali. Our comprehensive directory connects you with verified therapists offering traditional and modern treatments. Whether you&apos;re seeking relaxation, therapeutic healing, or cultural wellness practices, find your perfect massage experience.
+              Discover authentic massage experiences across Bali. Our comprehensive directory connects you with verified therapists offering traditional and modern treatments. Whether you&apos;re seeking relaxation, therapeutic healing, or cultural wellness practices, find your perfect massage experience. Looking for a <a href="https://homemassageubud.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">convenient home massage service in Ubud</a>? We can help connect you with the best options.
             </p>
             {treatmentCount > 0 && freelancerCount > 0 && locationCount > 0 && (
               <p className="text-base md:text-lg text-slate-400 mb-6 md:mb-8 px-4">
@@ -143,7 +143,7 @@ export default async function HomePage() {
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="mb-8">
           <h2 className="text-4xl font-bold text-white mb-2">Explore Bali Locations</h2>
-          <p className="text-slate-400 text-lg">Discover massage therapists across different regions of Bali. Each area offers unique wellness experiences and cultural traditions.</p>
+          <p className="text-slate-400 text-lg">Discover massage therapists across different regions of Bali. Each area offers unique wellness experiences and cultural traditions. For those staying in the cultural heart of Bali, explore our partner&apos;s specialized <a href="https://homemassageubud.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services in Ubud</a>.</p>
         </div>
         {featuredLocations.length > 0 ? (
           <>
@@ -184,6 +184,25 @@ export default async function HomePage() {
 
       {/* CTA Section */}
       <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* Home Massage Services Info */}
+        <div className="bg-gradient-to-r from-teal-900/30 to-emerald-900/30 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-teal-800/50 text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Prefer Massage at Your Accommodation?</h2>
+          <p className="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
+            Experience the ultimate convenience with professional massage therapists who come to you. Perfect for those staying in Ubud who want authentic Balinese treatments in the privacy and comfort of their villa or hotel.
+          </p>
+          <p className="text-slate-400 mb-6 max-w-2xl mx-auto">
+            Our partner provides reliable, professional home massage services throughout the Ubud area, featuring experienced therapists trained in traditional and modern techniques.
+          </p>
+          <a
+            href="https://homemassageubud.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl transition-all hover:scale-105 shadow-[0_0_20px_rgba(20,184,166,0.3)]"
+          >
+            Explore Home Massage in Ubud →
+          </a>
+        </div>
+
         <div className="bg-gradient-to-r from-emerald-900/50 to-teal-900/50 backdrop-blur-sm rounded-3xl p-12 border border-emerald-800 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">Are You a Massage Therapist?</h2>
           <p className="text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">

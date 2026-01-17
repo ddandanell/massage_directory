@@ -129,6 +129,11 @@ export default async function LocationPage({ params }: LocationPageProps) {
                         <section className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-800">
                             <h2 className="text-2xl font-semibold text-white mb-4">Massage Culture in {location.name}</h2>
                             <p className="text-slate-300 leading-relaxed whitespace-pre-line">{location.massageCulture}</p>
+                            {location.slug === 'ubud' && (
+                                <p className="text-slate-300 leading-relaxed mt-4 pt-4 border-t border-slate-700">
+                                    For those who prefer the convenience and privacy of in-home treatments, professional <a href="https://homemassageubud.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services in Ubud</a> bring authentic Balinese wellness experiences directly to your villa or hotel.
+                                </p>
+                            )}
                         </section>
 
                         {/* Available Treatments */}
