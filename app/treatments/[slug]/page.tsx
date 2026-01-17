@@ -4,6 +4,8 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPlaceholderImageUrl } from '@/lib/ai/generate-image'
+import { isBaliOrIndonesianTreatment } from '@/lib/utils/treatment-helpers'
+import { EXTERNAL_LINKS } from '@/lib/constants/external-links'
 
 interface TreatmentPageProps {
     params: {
@@ -137,9 +139,9 @@ export default async function TreatmentPage({ params }: TreatmentPageProps) {
                             <section className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-800">
                                 <h2 className="text-2xl font-semibold text-white mb-4">About This Treatment</h2>
                                 <p className="text-slate-300 leading-relaxed">{treatment.description}</p>
-                                {(treatment.slug === 'balinese-massage' || treatment.slug === 'traditional-balinese-massage' || treatment.origin?.toLowerCase().includes('bali') || treatment.origin?.toLowerCase().includes('indonesia')) && (
+                                {isBaliOrIndonesianTreatment(treatment) && (
                                     <p className="text-slate-300 leading-relaxed mt-4 pt-4 border-t border-slate-700">
-                                        Experience this authentic treatment in the comfort of your own space with professional <a href="https://homemassageubud.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services available in Ubud</a>.
+                                        Experience this authentic treatment in the comfort of your own space with professional <a href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services available in Ubud</a>.
                                     </p>
                                 )}
                             </section>

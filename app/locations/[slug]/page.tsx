@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPlaceholderImageUrl } from '@/lib/ai/generate-image'
+import { EXTERNAL_LINKS } from '@/lib/constants/external-links'
 
 interface LocationPageProps {
     params: {
@@ -131,7 +132,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
                             <p className="text-slate-300 leading-relaxed whitespace-pre-line">{location.massageCulture}</p>
                             {location.slug === 'ubud' && (
                                 <p className="text-slate-300 leading-relaxed mt-4 pt-4 border-t border-slate-700">
-                                    For those who prefer the convenience and privacy of in-home treatments, professional <a href="https://homemassageubud.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services in Ubud</a> bring authentic Balinese wellness experiences directly to your villa or hotel.
+                                    For those who prefer the convenience and privacy of in-home treatments, professional <a href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services in Ubud</a> bring authentic Balinese wellness experiences directly to your villa or hotel.
                                 </p>
                             )}
                         </section>

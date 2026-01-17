@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { prisma } from '@/lib/prisma'
 import { getPlaceholderImageUrl } from '@/lib/ai/generate-image'
+import { EXTERNAL_LINKS } from '@/lib/constants/external-links'
 
 export default async function HomePage() {
   const stats = await prisma.$transaction([
@@ -38,7 +39,7 @@ export default async function HomePage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
-              Discover authentic massage experiences across Bali. Our comprehensive directory connects you with verified therapists offering traditional and modern treatments. Whether you&apos;re seeking relaxation, therapeutic healing, or cultural wellness practices, find your perfect massage experience. Looking for a <a href="https://homemassageubud.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">convenient home massage service in Ubud</a>? We can help connect you with the best options.
+              Discover authentic massage experiences across Bali. Our comprehensive directory connects you with verified therapists offering traditional and modern treatments. Whether you&apos;re seeking relaxation, therapeutic healing, or cultural wellness practices, find your perfect massage experience. Looking for a <a href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">convenient home massage service in Ubud</a>? We can help connect you with the best options.
             </p>
             {treatmentCount > 0 && freelancerCount > 0 && locationCount > 0 && (
               <p className="text-base md:text-lg text-slate-400 mb-6 md:mb-8 px-4">
@@ -143,7 +144,7 @@ export default async function HomePage() {
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="mb-8">
           <h2 className="text-4xl font-bold text-white mb-2">Explore Bali Locations</h2>
-          <p className="text-slate-400 text-lg">Discover massage therapists across different regions of Bali. Each area offers unique wellness experiences and cultural traditions. For those staying in the cultural heart of Bali, explore our partner&apos;s specialized <a href="https://homemassageubud.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services in Ubud</a>.</p>
+          <p className="text-slate-400 text-lg">Discover massage therapists across different regions of Bali. Each area offers unique wellness experiences and cultural traditions. For those staying in the cultural heart of Bali, explore our partner&apos;s specialized <a href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 hover:decoration-emerald-300 transition-colors">home massage services in Ubud</a>.</p>
         </div>
         {featuredLocations.length > 0 ? (
           <>
@@ -194,7 +195,7 @@ export default async function HomePage() {
             Our partner provides reliable, professional home massage services throughout the Ubud area, featuring experienced therapists trained in traditional and modern techniques.
           </p>
           <a
-            href="https://homemassageubud.com/"
+            href={EXTERNAL_LINKS.HOME_MASSAGE_UBUD.url}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl transition-all hover:scale-105 shadow-[0_0_20px_rgba(20,184,166,0.3)]"
